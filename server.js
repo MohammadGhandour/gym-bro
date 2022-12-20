@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ origin: 'https://moh-gym-bro.netlify.app' }));
 
 const workoutRoute = require('./routes/workouts');
 app.use('/workouts', workoutRoute);
