@@ -10,16 +10,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: 'https://moh-gym-bro.netlify.app' }));
 
+app.use('/', () => {
+    res.status(200).json({ message: "Welcome to moh's gym bro backend." })
+});
+
 const workoutRoute = require('./routes/workouts');
 app.use('/workouts', workoutRoute);
 
 const userRoute = require('./routes/users');
 app.use('/users', userRoute);
 
-app.use(express.static(path.join(__dirname, '../build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build'))
-});
+// app.use(express.static(path.join(__dirname, '../build')));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../build'))
+// });
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
