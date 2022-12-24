@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: 'https://moh-gym-bro.netlify.app' }));
 
-app.use('/', () => {
+app.use('/', (req, res) => {
     res.status(200).json({ message: "Welcome to moh's gym bro backend." })
 });
 
