@@ -8,17 +8,18 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'https://moh-gym-bro.netlify.app' }));
+app.use(cors());
 
-app.use('/', (req, res) => {
-    res.status(200).json({ message: "Welcome to moh's gym bro backend." })
-});
 
 const workoutRoute = require('./routes/workouts');
 app.use('/workouts', workoutRoute);
 
 const userRoute = require('./routes/users');
 app.use('/users', userRoute);
+
+app.use('/', (req, res) => {
+    res.status(200).json({ message: "Welcome to moh's gym bro backend." })
+});
 
 // app.use(express.static(path.join(__dirname, '../build')));
 // app.get('*', (req, res) => {
