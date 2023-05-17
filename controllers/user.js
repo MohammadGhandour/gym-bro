@@ -13,7 +13,7 @@ exports.singUp = async (req, res) => {
             .then((hash) => {
                 try {
                     UserModel.create({ username: username, password: hash })
-                        .then(() => {
+                        .then((user) => {
                             UserModel.findOne({ username: username })
                                 .then((registeredUser) => {
                                     if (!registeredUser) {
@@ -25,7 +25,8 @@ exports.singUp = async (req, res) => {
                                                 { userId: registeredUser._id },
                                                 process.env.WORKOUT_TOKEN,
                                                 { expiresIn: '365d' }
-                                            )
+                                            ),
+                                            username
                                         });
                                     }
                                 })
@@ -71,7 +72,8 @@ exports.login = async (req, res) => {
                                 { userId: user._id },
                                 process.env.WORKOUT_TOKEN,
                                 { expiresIn: '168h' }
-                            )
+                            ),
+                            username
                         });
                     }
                 })
