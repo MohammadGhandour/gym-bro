@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const moment = require('moment');
 
 exports.createWorkout = async (req, res) => {
-    const { title, category, load, sets, reps, unit, userId } = req.body;
+    const { title, category, load, sets, reps, unit } = req.body;
+    const { userId } = req.auth;
     const loadsChart = [
         {
             date: moment().format('L'),
