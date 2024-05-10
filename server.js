@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "https://gymbro.lafarandoleparis.com" }));
+const origin = ["https://gymbro.lafarandoleparis.com", "http://gymbro.lafarandoleparis.com"];
+app.use(cors({ origin }));
 
 
 const workoutRoute = require('./routes/workouts');
