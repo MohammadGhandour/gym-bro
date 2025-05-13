@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const origin = ["https://gymbro.lafarandoleparis.com", "http://gymbro.lafarandoleparis.com"];
+const origin = JSON.parse(process.env.ORIGINS);
 app.use(cors({ origin }));
 
 
